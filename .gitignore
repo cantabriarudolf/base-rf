@@ -1,0 +1,11 @@
+# Estado de herramientas de agente (registro de skills, cachés locales)
+.atl/
+
+# Basura de sistema y editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs y salidas locales
+*.log

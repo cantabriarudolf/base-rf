@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="QSO CERO: juego de Morse de supervivencia para el proyecto BASE/RF. Escucha, transmite y completa tu primer QSO.">
+  <title>QSO CERO — Morse de supervivencia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <p class="kicker">BASE/RF · Módulo de operación</p>
+      <h1>QSO CERO</h1>
+      <p class="tagline">Tu primer Hola Mundo se transmite, no se escribe.</p>
+    </div>
+    <div class="top-badge">
+      <span class="dot"></span>
+      <span>Audio-first · timing real</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- ============ TU ESTACIÓN ============ -->
+    <section class="card station" aria-labelledby="station-title">
+      <h2 id="station-title">Tu estación</h2>
+
+      <label class="field">
+        <span>Indicativo</span>
+        <input id="callsign" class="mono" value="CA3XYZ" maxlength="10" autocomplete="off" spellcheck="false" aria-describedby="category-hint">
+      </label>
+      <p id="category-hint" class="hint">Categoría por prefijo: Novicio</p>
+
+      <label class="field">
+        <span>Número de licencia <em>(local)</em></span>
+        <input id="license" class="mono" placeholder="Opcional" maxlength="20" autocomplete="off" spellcheck="false" aria-describedby="license-hint">
+      </label>
+      <p id="license-hint" class="hint">No se transmite. En el aire te identifica tu indicativo; el número es administrativo.</p>
+
+      <div class="grid-2">
+        <label class="field">
+          <span>QTH</span>
+          <input id="qth" class="mono" value="SANTIAGO" maxlength="24" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field">
+          <span>Nombre</span>
+          <input id="name" class="mono" value="OPERADOR" maxlength="20" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Velocidad <output id="wpm-out">12 WPM</output></span>
+        <input id="wpm" type="range" min="5" max="25" step="1" value="12">
+      </label>
+
+      <label class="field">
+        <span>Pausa extra <output id="gap-out">0 ms</output></span>
+        <input id="gap" type="range" min="0" max="200" step="10" value="0">
+      </label>
+
+      <label class="field">
+        <span>Farnsworth <output id="farnsworth-out">Apagado</output></span>
+        <input id="farnsworth" type="range" min="0" max="20" step="1" value="0">
+      </label>
+
+      <label class="field">
+        <span>Volumen</span>
+        <input id="volume" type="range" min="0" max="1" step="0.05" value="0.7">
+      </label>
+
+      <label class="field">
+        <span>Tono</span>
+        <select id="tone">
+          <option value="600">600 Hz</option>
+          <option value="650" selected>650 Hz</option>
+          <option value="700">700 Hz</option>
+          <option value="750">750 Hz</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Nivel</span>
+        <select id="level"></select>
+      </label>
+
+      <label class="field">
+        <span>Koch</span>
+        <select id="koch">
+          <option value="0">Apagado</option>
+          <option value="1">Koch 1</option>
+          <option value="2">Koch 2</option>
+          <option value="3">Koch 3</option>
+          <option value="4">Koch 4</option>
+          <option value="5">Koch 5</option>
+          <option value="6">Koch 6</option>
+          <option value="7">Koch 7</option>
+          <option value="8">Koch 8</option>
+        </select>
+      </label>
+
+      <details class="howto">
+        <summary>Cómo se juega</summary>
+        <ol>
+          <li>Escribe tu indicativo. Es tu identidad en el aire.</li>
+          <li><b>Escucha:</b> reproduce y escribe lo que oíste.</li>
+          <li><b>Transmite:</b> mantén <kbd>Espacio</kbd> o el botón. Un punto dura 1 unidad; una raya, 3.</li>
+          <li>Si no copiaste, pide <b>AGN</b>. Adivinar cuesta más que repetir.</li>
+          <li>Completa el <b>Primer QSO</b>: llamada, respuesta, reporte y cierre.</li>
+        </ol>
+      </details>
+    </section>
+
+    <!-- ============ ESCENARIO ============ -->
+    <section class="card stage-card" aria-labelledby="stage-title">
+      <h2 id="stage-title" class="sr-only">Escenario de práctica</h2>
+
+      <nav class="tabs" role="tablist" aria-label="Modos de práctica">
+        <button class="tab active" data-mode="listen" role="tab" aria-selected="true">1 · Escucha</button>
+        <button class="tab" data-mode="send" role="tab" aria-selected="false">2 · Transmite</button>
+        <button class="tab" data-mode="qso" role="tab" aria-selected="false">3 · Primer QSO</button>
+        <button class="tab" data-mode="survival" role="tab" aria-selected="false">4 · Supervivencia</button>
+      </nav>
+
+      <div id="stage" class="stage"></div>
+
+      <div class="keylight-wrap" aria-hidden="true">
+        <div id="keylight" class="keylight"></div>
+      </div>
+
+      <div class="controls">
+        <button id="btn-play" class="btn primary">▶ Reproducir</button>
+        <button id="btn-repeat" class="btn" title="Repetir (R)">AGN?</button>
+        <button id="btn-slow" class="btn" title="Más lento (QRS)">QRS</button>
+        <button id="btn-key" class="btn key" hidden>Mantén para transmitir</button>
+        <button id="btn-eval" class="btn">Evaluar</button>
+        <button id="btn-clear" class="btn ghost">Borrar</button>
+        <button id="btn-next" class="btn ghost">Siguiente</button>
+      </div>
+
+      <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- ============ KIT Y PUNTAJE ============ -->
+    <aside class="card kit-card" aria-labelledby="kit-title">
+      <h2 id="kit-title">Kit de supervivencia</h2>
+      <p class="hint">Haz clic en una palabra para oírla. Estas son las que necesitas antes de cualquier teoría.</p>
+      <div id="kit" class="kit"></div>
+
+      <h2>Puntaje</h2>
+      <div id="score" class="score"></div>
+      <button id="btn-cert" class="btn" type="button">Exportar certificado</button>
+      <p class="hint small">El puntaje guarda tu mejor intento en este navegador. No se envía a ninguna parte.</p>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <p>
+      <b>QSO CERO</b> es parte de <a href="../README.md">BASE/RF</a>.
+      La norma chilena se cita en <a href="../docs/01-normativa-cl-2026.md">docs/01-normativa-cl-2026.md</a>.
+      Este juego no reemplaza la licencia ni la práctica con una estación real.
+    </p>
+    <p class="mono">CQ CQ CQ DE QSO CERO K</p>
+  </footer>
+
+  <noscript>
+    <p class="noscript">Este juego necesita JavaScript para generar el audio y medir el tiempo de tecleo.</p>
+  </noscript>
+
+  <script src="morse-core.js"></script>
+  <script src="curriculum.js"></script>
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
