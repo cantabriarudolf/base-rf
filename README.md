@@ -1,8 +1,22 @@
-# BASE/RF — Estación base para ingenieros en telecomunicaciones
+<p align="center">
+  <img src="assets/logo-amber.svg" alt="" width="96" height="96">
+</p>
+
+<h1 align="center">BASE/RF</h1>
+
+<p align="center">
+  <sub>Manual de campo y programa de formación para ingenieros en telecomunicaciones · QSO CERO v0.2</sub>
+</p>
+
+<p align="center">
+  <a href="LICENSE-docs.md"><img alt="Contenido: CC BY-SA 4.0" src="https://img.shields.io/badge/contenido-CC%20BY--SA%204.0-c9a227"></a>
+  <a href="LICENSE"><img alt="Código: MIT" src="https://img.shields.io/badge/c%C3%B3digo-MIT-3fb950"></a>
+  <a href="https://github.com/Gentleman-Programming/gentle-shell"><img alt="Powered by Gentle Shell" src="https://img.shields.io/badge/powered%20by-Gentle%20Shell-8b5cf6"></a>
+</p>
 
 > **Nombre provisional.** Clave interna: **NQH** (*no quedar de huevón*), que es literalmente el criterio de aceptación del programa.
 
-**Estado:** v0.1 del programa + **v0.2 de QSO CERO** — concepto, digesto normativo chileno, mapa de competencias, laboratorio inicial, checklists y juego de Morse.
+**Estado:** v0.1 del programa + **v0.2 de QSO CERO** — concepto, digesto normativo chileno, mapa de competencias, laboratorio inicial, checklists y juego de Morse. Repositorio público, con doble licencia: contenido CC BY-SA 4.0, código MIT.
 
 ---
 
@@ -42,6 +56,11 @@ No enseña teoría de grado. Enseña lo que cambia una decisión: qué banda, qu
 ```
 README.md
 AGENTS.md                      reglas para mantener el proyecto (fuentes, estilo, verificación)
+LICENSE                        licencia del código (MIT)
+LICENSE-docs.md                licencia del contenido (CC BY-SA 4.0)
+assets/
+  logo.svg                     marca original, negro sobre transparente
+  logo-amber.svg               la misma marca en el ámbar del proyecto
 docs/
   00-concepto.md               tesis, arquitectura, formas posibles, métricas, riesgos
   01-normativa-cl-2026.md      digesto táctico de la norma chilena vigente
@@ -49,16 +68,56 @@ docs/
   03-labs.md                   10 prácticas con predicción, medición y evidencia
   04-checklists.md             pre-transmisión, auditoría, interferencia, emergencia, examen, compra, distintivo/repetidora
   05-matematica-de-bolsillo.md dB, enlace, Fresnel, ruido, ROE, PEP
-  06-decisiones.md             ADRs: por qué Chile, por qué práctico, qué se excluye
+  06-decisiones.md             ADRs: por qué Chile, por qué práctico, licencia, qué se excluye
   07-fuentes.md                normas, IDs, fechas, estado de verificación
   08-juego-morse.md            diseño de QSO CERO: modos, puntaje, arquitectura, roadmap
   09-plan-v0.2.md              plan ejecutado por workers y registro de verificación
   10-qa-v0.2.md                QA automático de v0.2, casos borde y riesgos residuales
 game/
   index.html                   abre el juego (sin build, sin dependencias)
+  morse-core.js                núcleo de Morse: puro, sin DOM, ejecutable en Node
+  app.js                       interfaz: tecleo, puntaje, certificado, autopruebas
+  audio.js                     síntesis de tono y reproducción
+  curriculum.js                palabras, frases, progresión
+  styles.css                   tema oscuro y layout
+  test-core.mjs                pruebas del núcleo: node game/test-core.mjs
   README.md                    cómo jugar, controles, pruebas
-docs/03-labs.md                incluye el Lab 9: QSO completo en Morse
 ```
+
+## Cómo se construyó
+
+El proyecto se mantiene con [Gentle Shell](https://github.com/Gentleman-Programming/gentle-shell) corriendo el ciclo ODD (*Organic Driven Development*): explorar antes de escribir, una tarea por unidad, workers acotados por superficie de edición, verificación y commits de un solo tema.
+
+El registro es parte del repositorio, no de una conversación privada:
+
+- `docs/09-plan-v0.2.md` — qué worker hizo qué, con qué modelo y con qué resultado.
+- `docs/10-qa-v0.2.md` — autopruebas, casos borde y riesgos residuales.
+
+## Cómo contribuir
+
+1. Abre un issue con el documento, el laboratorio o la prueba que toca. Si es normativo, trae la fuente.
+2. Lee `AGENTS.md` antes de editar: esas reglas de fuentes, números y estilo son parte de la revisión.
+3. Si tocas el núcleo del juego, `node game/test-core.mjs` tiene que quedar en verde y la prueba nueva va junto con la tabla, el prosigno o la regla.
+4. Pull request contra `main`, pequeño y de un solo tema. Al enviarlo aceptas que entra bajo la misma licencia del archivo que toca.
+
+## Licencia
+
+Doble licencia, por tipo de artefacto:
+
+| Artefacto | Licencia | Archivo |
+|---|---|---|
+| Contenido: `README.md`, `AGENTS.md`, `docs/`, `game/README.md`, textos de la interfaz | **CC BY-SA 4.0** | `LICENSE-docs.md` |
+| Código: `game/*.js`, `game/*.css`, `game/index.html` | **MIT** | `LICENSE` |
+
+- **En corto:** el manual se puede copiar, adaptar y enseñar, siempre que se atribuya el origen y la adaptación se publique con la misma licencia. El código del juego se puede reutilizar sin arrastrar la licencia del manual.
+- **Normas citadas:** la Ley 18.168, el DS 523 y el resto de las fuentes son públicas y se **referencian**, no se relicencian. Ver `docs/07-fuentes.md`.
+- **Marca gráfica:** el logo de `assets/` no está cubierto por ninguna de las dos licencias. Ver "Créditos".
+
+## Créditos
+
+- **Marca gráfica:** `assets/logo.svg` proviene de [dharmatec.cl](https://dharmatec.cl) y se usa como sello del autor de este repositorio. `assets/logo-amber.svg` es la misma marca teñida con el ámbar del proyecto. No se relicencia.
+- **Normativa:** fuente primaria en `docs/07-fuentes.md`, con fecha de consulta y estado de verificación.
+- **Herramientas:** construido con [Gentle Shell](https://github.com/Gentleman-Programming/gentle-shell).
 
 ## Lo que este proyecto NO es
 
@@ -70,4 +129,4 @@ docs/03-labs.md                incluye el Lab 9: QSO completo en Morse
 
 ## Siguiente decisión del owner
 
-Elegir la forma del proyecto (curso, manual, repositorio vivo, mentoría o servicio de auditoría) y el nombre definitivo. Ver `docs/00-concepto.md` §"Formas posibles" y `docs/06-decisiones.md`.
+Elegir el nombre definitivo y la forma del proyecto (curso, manual, repositorio vivo, mentoría o servicio de auditoría). Ver `docs/00-concepto.md` §"Formas posibles" y `docs/06-decisiones.md`.
