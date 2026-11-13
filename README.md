@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo-amber.svg" alt="" width="96" height="96">
+  <img src="assets/band.svg" alt="" width="100%">
 </p>
 
 <h1 align="center">BASE/RF</h1>
@@ -9,9 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE-docs.md"><img alt="Contenido: CC BY-SA 4.0" src="https://img.shields.io/badge/contenido-CC%20BY--SA%204.0-c9a227"></a>
-  <a href="LICENSE"><img alt="Código: MIT" src="https://img.shields.io/badge/c%C3%B3digo-MIT-3fb950"></a>
-  <a href="https://github.com/Gentleman-Programming/gentle-shell"><img alt="Powered by Gentle Shell" src="https://img.shields.io/badge/powered%20by-Gentle%20Shell-8b5cf6"></a>
+  <a href="LICENSE-docs.md"><img alt="Contenido: CC BY-SA 4.0" src="https://img.shields.io/badge/contenido-CC%20BY--SA%204.0-c0a062?labelColor=0a0a0b"></a>
+  <a href="LICENSE"><img alt="Código: MIT" src="https://img.shields.io/badge/c%C3%B3digo-MIT-c9ccd1?labelColor=0a0a0b"></a>
 </p>
 
 > **Nombre provisional.** Clave interna: **NQH** (*no quedar de huevón*), que es literalmente el criterio de aceptación del programa.
@@ -86,7 +85,7 @@ game/
 
 ## Cómo se construyó
 
-El proyecto se mantiene con [Gentle Shell](https://github.com/Gentleman-Programming/gentle-shell) corriendo el ciclo ODD (*Organic Driven Development*): explorar antes de escribir, una tarea por unidad, workers acotados por superficie de edición, verificación y commits de un solo tema.
+El proyecto se mantiene con el ciclo ODD (*Organic Driven Development*): explorar antes de escribir, una tarea por unidad, workers acotados por superficie de edición, verificación y commits de un solo tema.
 
 El registro es parte del repositorio, no de una conversación privada:
 
@@ -115,9 +114,8 @@ Doble licencia, por tipo de artefacto:
 
 ## Créditos
 
-- **Marca gráfica:** `assets/logo.svg` proviene de [dharmatec.cl](https://dharmatec.cl) y se usa como sello del autor de este repositorio. `assets/logo-amber.svg` es la misma marca teñida con el ámbar del proyecto. No se relicencia.
+- **Marca gráfica:** `assets/logo.svg` y `assets/logo-amber.svg` son el sello del autor de este repositorio. No se relicencia.
 - **Normativa:** fuente primaria en `docs/07-fuentes.md`, con fecha de consulta y estado de verificación.
-- **Herramientas:** construido con [Gentle Shell](https://github.com/Gentleman-Programming/gentle-shell).
 
 ## Lo que este proyecto NO es
 
@@ -130,3 +128,10 @@ Doble licencia, por tipo de artefacto:
 ## Siguiente decisión del owner
 
 Elegir el nombre definitivo y la forma del proyecto (curso, manual, repositorio vivo, mentoría o servicio de auditoría). Ver `docs/00-concepto.md` §"Formas posibles" y `docs/06-decisiones.md`.
+
+
+---
+
+<p align="center">
+  <sub><strong>motor · Gentle Shell</strong> · contenido CC BY-SA 4.0 · código MIT</sub>
+</p>
