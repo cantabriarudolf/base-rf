@@ -66,6 +66,24 @@ a:hover {
   background: linear-gradient(180deg, rgba(18, 26, 36, 0.9), rgba(11, 15, 20, 0));
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.brand-mark {
+  flex: none;
+  width: clamp(38px, 5vw, 52px);
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(240, 180, 41, 0.35));
+}
+
+.brand-text {
+  min-width: 0;
+}
+
 .kicker {
   margin: 0 0 4px;
   color: var(--accent);
