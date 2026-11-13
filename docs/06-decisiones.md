@@ -148,7 +148,7 @@ Cada decisión tiene contexto, decisión, consecuencias y una condición de revi
 | Código (`game/*.js`, `game/*.css`, `game/index.html`) | MIT | `LICENSE` |
 
 - Las contribuciones entran bajo la misma licencia del archivo que tocan; pull request contra `main`.
-- La marca gráfica de `assets/` no se relicencia: viene de dharmatec.cl y se usa como sello del autor.
+- La marca gráfica de `assets/` no se relicencia: es la marca del autor y se usa como sello.
 
 **Consecuencias:**
 - Cualquier adaptación publicada del manual tiene que quedar en CC BY-SA 4.0 y mantener la atribución del repositorio fuente. Comercializar un taller es posible; cerrar los materiales derivados, no.
