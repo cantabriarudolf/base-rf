@@ -121,6 +121,6 @@ La radioafición es el vehículo porque es el único dominio donde un ingeniero 
 1. Nombre definitivo (BASE/RF es provisional).
 2. Público primario: ingenieros egresados, técnicos, o ambos con rutas separadas.
 3. Formato: repo, manual, curso o programa mixto.
-4. Licencia del contenido y política de contribuciones.
+4. ~~Licencia del contenido y política de contribuciones.~~ Resuelto en ADR-010: contenido CC BY-SA 4.0, código MIT.
 5. Si se publica en español neutro o en chileno directo (recomendación: chileno directo; el registro es parte del método).
 6. Si se busca aval de un radio club, universidad o colegio profesional.

@@ -136,14 +136,45 @@ Cada decisión tiene contexto, decisión, consecuencias y una condición de revi
 
 ---
 
-## ADR-010 — Licencia y publicación: pendiente
+## ADR-010 — Licencia: contenido abierto, código libre
 
-**Contexto:** el proyecto puede ser abierto, vendido como curso o quedar privado.
+**Contexto:** el proyecto puede ser abierto, vendido como curso o quedar privado. v0.1 la dejó `[pendiente]`; el 2026-11-13 el owner pidió publicarlo con licencia colaborativa. La normativa citada es pública y se referencia, no se reclama como propia.
 
-**Decisión:** `[pendiente]`. v0.1 no define licencia. Lo que sí se decide: la normativa citada es pública y se referencia, no se reclama como propia.
+**Decisión:** doble licencia, por tipo de artefacto.
+
+| Artefacto | Licencia | Archivo |
+|---|---|---|
+| Contenido (`README.md`, `AGENTS.md`, `docs/`, `game/README.md`, textos de la interfaz) | CC BY-SA 4.0 | `LICENSE-docs.md` |
+| Código (`game/*.js`, `game/*.css`, `game/index.html`) | MIT | `LICENSE` |
+
+- Las contribuciones entran bajo la misma licencia del archivo que tocan; pull request contra `main`.
+- La marca gráfica de `assets/` no se relicencia: viene de dharmatec.cl y se usa como sello del autor.
 
 **Consecuencias:**
-- Antes de publicar, definir licencia y política de contribuciones.
-- Antes de vender, definir qué se vende (facilitación, evaluación, auditoría) y qué queda abierto.
+- Cualquier adaptación publicada del manual tiene que quedar en CC BY-SA 4.0 y mantener la atribución del repositorio fuente. Comercializar un taller es posible; cerrar los materiales derivados, no.
+- El código del juego queda reutilizable sin arrastrar la licencia del manual.
+- Vender sigue abierto, pero se vende **facilitación, evaluación o auditoría**, no el texto cerrado.
+- Aparece una obligación de mantenimiento: si se cambia el alcance de la licencia, se actualizan `LICENSE`, `LICENSE-docs.md`, `README.md` y este ADR en el mismo commit.
 
-**Revisar cuando:** el owner decida la forma del proyecto.
+**Revisar cuando:** alguien pida una licencia incompatible (por ejemplo CC BY-NC), o el proyecto se convierta en producto cerrado.
+
+---
+
+## ADR-011 — QSO CERO: audio primero, tecleo real, sin build
+
+**Contexto:** el proyecto necesitaba una dinámica para practicar Morse. La tentación era hacer un quiz de letras o un juego de múltiple opción. Eso no enseña Morse: el Morse es una habilidad de timing y de copia bajo ruido.
+
+**Decisión:** el juego se implementa como una página web sin build y sin dependencias, con:
+- audio sintetizado (Web Audio) y envolvente de 5 ms;
+- tecleo real con `Espacio` o botón, midiendo duraciones;
+- un núcleo puro (`morse-core.js`) sin DOM, probado en Node;
+- identidad por **indicativo**, no por número de licencia;
+- puntaje de copia + timing + criterio (pedir `AGN` en vez de adivinar).
+
+**Consecuencias:**
+- El juego funciona desde `file://` y no depende de una cadena de suministro.
+- El núcleo se puede reutilizar en una app móvil o en un CLI.
+- El decodificador prioriza prosignos sobre puntuación (`+` = `AR`, `=` = `BT`, `&` = `AS`, `(` = `KN`); es correcto para el juego, no para un decodificador universal.
+- No reemplaza el aire: el Lab 9 exige un contacto real o simulado con log.
+
+**Revisar cuando:** se agregue decodificación adaptativa, modo móvil o un modo examen sin guía.
